@@ -22,6 +22,9 @@ var myRec = new p5.SpeechRec(); // new P5.SpeechRec object
     mystr.push(".");
     // graphics stuff:
     createCanvas(800, 600);
+  capture = createCapture(VIDEO);
+  capture.size(800, 600);  
+  capture.hide();
     myRec.onResult = parseResult; // recognition callback
     myRec.start(); // start engine
 
@@ -30,9 +33,6 @@ var myRec = new p5.SpeechRec(); // new P5.SpeechRec object
     myRec.onStart = onStartEvent;
     myRec.onError = onErrorEvent;
     onAir = true;
-  capture = createCapture(VIDEO);
-  capture.size(800, 600);  
-  capture.hide();
   // text stuff
     textFont(ttxFontDH);
     textSize(gTtxFontSize); 
