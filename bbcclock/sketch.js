@@ -6,16 +6,17 @@ var img;
 var fg;
 var target;
 var current;
+var logoScale;
 var secondWidth; // Width of the second hand is the same as the numeral gap
 var lastSecond;
 var theta=0;
 var wibble=0;
 function preload() {
-  img=loadImage("bbc2.jpg");
+  img=loadImage("image/bbc2.jpg");
 }
 
 function setup() {
-  var sc=2.4;
+  var sc=1; // 2.4; // Set to 1 for full scale
   xw=displayWidth/sc;
   yh=displayHeight/sc;
   createCanvas(xw,yh);
@@ -24,12 +25,17 @@ function setup() {
   fg=color(57,157,206);
   //fg=color(255,255,0);
   secondWidth=xw/200;
+	// scale of logo based on 600x450 original image 
+	logoScale=yh/450;
+	// While the logo itself is 266 x 65
+	img.resize(266*logoScale,65*logoScale);
 }
 
 function draw() {
   push();
   background(4,1,132);
-  image(img,210,350);
+  image(img,xc-(266*logoScale)/2,yh*0.70); // magic constant. BBC 2 logo is fixed size 266 wide :-(
+
   noFill();
   stroke(fg);
   centreRing();
@@ -38,6 +44,9 @@ function draw() {
   minuteHand();
   secondHand();
   pop();
+	//stroke(color(255,0,0));
+	//fill(255);
+	//text(logoScale,10,100);
 }
 
 function secondHand()
